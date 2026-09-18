@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Se você criar um sitemap.xml no futuro, descomente a linha abaixo:
-# Sitemap: https://lpxconstrutor.com.br/sitemap.xml
+Sitemap: https://lpxconstrutor.com.br/sitemap.xml
