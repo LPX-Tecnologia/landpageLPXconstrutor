@@ -1031,7 +1031,7 @@
 
   // ====== FORMULÁRIO ======
   // ⚠️ TROQUE a URL abaixo pela do seu Google Apps Script
-  const URL_PLANILHA = "COLE_AQUI_A_URL_DO_SEU_APPS_SCRIPT";
+  const URL_PLANILHA = "https://script.google.com/macros/s/AKfycbzDPs9iYkDK_xTMFONz5YMAYWvv26w4KFY6rhDcHt_lrBzONwDM4j5w4o1SCAw9qXWd5g/exec";
 
   const form = document.getElementById('formTestador');
   const msg = document.getElementById('formMsg');
@@ -1060,17 +1060,24 @@
     btn.textContent = 'Enviando...';
 
     try {
-      if (URL_PLANILHA && URL_PLANILHA !== "COLE_AQUI_A_URL_DO_SEU_APPS_SCRIPT") {
-        await fetch(URL_PLANILHA, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            ...dados,
-            data: new Date().toLocaleString('pt-BR')
-          })
-        });
-      }
+  await fetch(URL_PLANILHA, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type': 'text/plain;charset=utf-8'},
+    body: JSON.stringify({
+      ...dados,
+      data: new Date().toLocaleString('pt-BR')
+    })
+  });
+  mostrarMsg('ok', '✅ Cadastro enviado! Entraremos em contato em breve com o acesso.');
+  form.reset();
+  btn.textContent = 'Enviado ✓';
+} catch (err) {
+  console.error(err);
+  mostrarMsg('err', 'Erro ao enviar. Tente novamente ou envie um e-mail para contato@lpxtecnologia.com.br');
+  btn.disabled = false;
+  btn.textContent = 'Quero participar do teste →';
+}
       mostrarMsg('ok', '✅ Cadastro enviado! Entraremos em contato em breve com o acesso.');
       form.reset();
       btn.textContent = 'Enviado ✓';
