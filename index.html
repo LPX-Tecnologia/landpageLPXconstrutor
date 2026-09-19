@@ -6,7 +6,7 @@
 <title>LPXConstrutor — A Rede Profissional da Construção Civil</title>
 <meta name="description" content="Conecte-se com profissionais da construção civil, encontre vagas, divulgue suas obras e feche negócios. Seja um dos primeiros a testar.">
 <meta name="theme-color" content="#1A3A5C">
- 
+
 <link rel="icon" type="image/png" href="logo capacetebranco.png">
 <link rel="apple-touch-icon" href="logo capacetebranco.png">
 
@@ -998,14 +998,33 @@
   </div>
 </footer>
 
-<script>
-  // Navbar scroll
+<script type="module">
+  // ====== IMPORTAÇÕES DO FIREBASE ======
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  // ====== CONFIGURAÇÃO DO FIREBASE ======
+  const firebaseConfig = {
+    apiKey: "AIzaSyAC4dMxTeLh7AaEWXqkHdmB1FFhZXyKyY0",
+    authDomain: "lpxlandpage.firebaseapp.com",
+    projectId: "lpxlandpage",
+    storageBucket: "lpxlandpage.firebasestorage.app",
+    messagingSenderId: "957822248703",
+    appId: "1:957822248703:web:6004ea994eaa48b8664eca",
+    measurementId: "G-QPDLVZX8ND"
+  };
+
+  // Inicializa o Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ====== NAVBAR SCROLL ======
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   });
 
-  // Mobile menu
+  // ====== MOBILE MENU ======
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   menuToggle.addEventListener('click', () => {
@@ -1019,7 +1038,7 @@
     });
   });
 
-  // FAQ
+  // ====== FAQ ======
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {
       const item = q.parentElement;
@@ -1030,9 +1049,6 @@
   });
 
   // ====== FORMULÁRIO ======
-  // ⚠️ TROQUE a URL abaixo pela do seu Google Apps Script
-  const URL_PLANILHA = "https://script.google.com/macros/s/AKfycbysLut5B9FcwvYw6HaMAUsLlNPawEYs8xHZ0LlsxKeAeKI_BzwhXzI9_zmxJC7UTsKNyg/exec";
-
   const form = document.getElementById('formTestador');
   const msg = document.getElementById('formMsg');
   const btn = document.getElementById('btnEnviar');
@@ -1060,29 +1076,21 @@
     btn.textContent = 'Enviando...';
 
     try {
-  await fetch(URL_PLANILHA, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {'Content-Type': 'text/plain;charset=utf-8'},
-    body: JSON.stringify({
-      ...dados,
-      data: new Date().toLocaleString('pt-BR')
-    })
-  });
-  mostrarMsg('ok', '✅ Cadastro enviado! Entraremos em contato em breve com o acesso.');
-  form.reset();
-  btn.textContent = 'Enviado ✓';
-} catch (err) {
-  console.error(err);
-  mostrarMsg('err', 'Erro ao enviar. Tente novamente ou envie um e-mail para contato@lpxtecnologia.com.br');
-  btn.disabled = false;
-  btn.textContent = 'Quero participar do teste →';
-}
+      await addDoc(collection(db, "cadastros"), {
+        nome: dados.nome,
+        email: dados.email,
+        whatsapp: dados.whatsapp,
+        cidade: dados.cidade,
+        perfil: dados.perfil,
+        area: dados.area,
+        criadoEm: serverTimestamp()
+      });
+
       mostrarMsg('ok', '✅ Cadastro enviado! Entraremos em contato em breve com o acesso.');
       form.reset();
       btn.textContent = 'Enviado ✓';
     } catch (err) {
-      console.error(err);
+      console.error("Erro ao salvar no Firestore:", err);
       mostrarMsg('err', 'Erro ao enviar. Tente novamente ou envie um e-mail para contato@lpxtecnologia.com.br');
       btn.disabled = false;
       btn.textContent = 'Quero participar do teste →';
