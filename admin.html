@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LPX Admin — Cadastros</title>
+<meta name="theme-color" content="#1A3A5C">
+<link rel="icon" type="image/png" href="logo capacetebranco.png">
+<link rel="apple-touch-icon" href="logo capacetebranco.png">
+<link rel="manifest" href="admin-manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --azul-escuro:#1A3A5C;
+    --azul-medio:#24507A;
+    --azul-claro:#3B7BB8;
+    --laranja:#F59E0B;
+    --laranja-escuro:#D97706;
+    --amarelo:#FCD34D;
+    --verde:#10B981;
+    --vermelho:#EF4444;
+    --branco:#FFFFFF;
+    --cinza-100:#F8FAFC;
+    --cinza-200:#E2E8F0;
+    --cinza-300:#CBD5E1;
+    --cinza-500:#64748B;
+    --cinza-800:#1E293B;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    background:var(--cinza-100);
+    color:var(--cinza-800);
+    line-height:1.6;
+    min-height:100vh;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* ===== LOGIN ===== */
+  .login-screen{
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    padding:24px;
+    background:
+      radial-gradient(ellipse at top right, rgba(91,163,224,.25), transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(245,158,11,.15), transparent 50%),
+      linear-gradient(135deg, #0F2640 0%, var(--azul-escuro) 50%, #1E4A73 100%);
+  }
+  .login-box{
+    background:white;
+    border-radius:20px;
+    padding:44px 36px;
+    max-width:420px;width:100%;
+    box-shadow:0 30px 80px rgba(0,0,0,.4);
+  }
+  .login-logo{
+    width:80px;height:80px;border-radius:50%;
+    background:url('logo capacetebranco.png') center/cover no-repeat;
+    margin:0 auto 20px;
+    box-shadow:0 8px 20px rgba(245,158,11,.35);
+    border:3px solid var(--laranja);
+  }
+  .login-box h1{
+    font-size:1.6rem;font-weight:900;text-align:center;
+    color:var(--azul-escuro);letter-spacing:-.02em;
+    margin-bottom:6px;
+  }
+  .login-box p{
+    text-align:center;color:var(--cinza-500);
+    font-size:.9rem;margin-bottom:28px;
+  }
+  .login-box input{
+    width:100%;
+    padding:16px 18px;
+    border-radius:12px;
+    border:1px solid var(--cinza-200);
+    background:var(--cinza-100);
+    font-size:.95rem;font-family:inherit;
+    outline:none;transition:all .2s;
+    margin-bottom:14px;
+  }
+  .login-box input:focus{
+    border-color:var(--laranja);
+    background:white;
+    box-shadow:0 0 0 4px rgba(245,158,11,.15);
+  }
+  .login-box button{
+    width:100%;
+    padding:16px;
+    border-radius:12px;border:none;
+    background:linear-gradient(135deg,var(--laranja),var(--laranja-escuro));
+    color:white;font-size:1rem;font-weight:800;
+    cursor:pointer;font-family:inherit;
+    transition:all .25s;margin-top:8px;
+  }
+  .login-box button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(245,158,11,.5);
+  }
+  .login-box button:disabled{opacity:.6;cursor:not-allowed;transform:none}
+  .login-msg{
+    margin-top:14px;padding:12px;border-radius:10px;
+    font-size:.85rem;text-align:center;display:none;
+  }
+  .login-msg.err{display:block;background:#FEF2F2;color:#991B1B;border:1px solid #FECACA}
+  .login-msg.ok{display:block;background:#F0FDF4;color:#166534;border:1px solid #BBF7D0}
+
+  /* ===== HEADER ===== */
+  .header{
+    background:linear-gradient(135deg,var(--azul-escuro),var(--azul-medio));
+    color:white;
+    padding:20px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;
+    position:sticky;top:0;z-index:100;
+    box-shadow:0 4px 20px rgba(0,0,0,.15);
+  }
+  .header-brand{
+    display:flex;align-items:center;gap:12px;
+    font-weight:800;font-size:1.05rem;
+  }
+  .header-brand .icon{
+    width:36px;height:36px;border-radius:50%;
+    background:url('logo capacetebranco.png') center/cover no-repeat;
+    border:2px solid var(--laranja);flex-shrink:0;
+  }
+  .header-brand span.orange{color:var(--laranja)}
+  .header-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .header-btn{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    color:white;padding:10px 16px;border-radius:10px;
+    font-size:.85rem;font-weight:600;cursor:pointer;
+    font-family:inherit;transition:all .2s;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .header-btn:hover{background:rgba(255,255,255,.2)}
+  .header-btn.active{
+    background:var(--laranja);border-color:var(--laranja);
+    color:var(--azul-escuro);
+  }
+  .notif-status{
+    font-size:.75rem;padding:6px 12px;border-radius:100px;
+    background:rgba(255,255,255,.15);
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .notif-status .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--verde);
+  }
+  .notif-status.off .dot{background:var(--vermelho)}
+
+  /* ===== CONTAINER ===== */
+  .container{
+    max-width:1200px;margin:0 auto;
+    padding:32px 24px 80px;
+  }
+
+  /* ===== STATS ===== */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;margin-bottom:28px;
+  }
+  .stat-card{
+    background:white;
+    border-radius:var(--radius);
+    padding:22px;
+    box-shadow:0 2px 12px rgba(26,58,92,.06);
+    border-left:4px solid var(--laranja);
+    transition:all .3s;
+  }
+  .stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,58,92,.12)}
+  .stat-label{
+    font-size:.75rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:.08em;
+    color:var(--cinza-500);margin-bottom:6px;
+  }
+  .stat-value{
+    font-size:1.9rem;font-weight:900;
+    color:var(--azul-escuro);letter-spacing:-.02em;
+    line-height:1;
+  }
+  .stat-card.hoje{border-left-color:var(--verde)}
+  .stat-card.semana{border-left-color:var(--azul-claro)}
+  .stat-card.tipo{border-left-color:#8B5CF6}
+
+  /* ===== FILTROS ===== */
+  .filters{
+    background:white;border-radius:var(--radius);
+    padding:18px 20px;margin-bottom:20px;
+    box-shadow:0 2px 12px rgba(26,58,92,.06);
+    display:flex;gap:12px;flex-wrap:wrap;align-items:center;
+  }
+  .search-input{
+    flex:1;min-width:220px;
+    padding:12px 16px;border-radius:10px;
+    border:1px solid var(--cinza-200);
+    background:var(--cinza-100);
+    font-size:.9rem;font-family:inherit;
+    outline:none;transition:all .2s;
+  }
+  .search-input:focus{
+    border-color:var(--laranja);
+    background:white;
+    box-shadow:0 0 0 4px rgba(245,158,11,.15);
+  }
+  .filter-select{
+    padding:12px 16px;border-radius:10px;
+    border:1px solid var(--cinza-200);
+    background:var(--cinza-100);
+    font-size:.9rem;font-family:inherit;
+    outline:none;cursor:pointer;
+  }
+
+  /* ===== LISTA ===== */
+  .lista{display:flex;flex-direction:column;gap:12px}
+  .vazio{
+    background:white;border-radius:var(--radius);
+    padding:60px 24px;text-align:center;
+    color:var(--cinza-500);
+  }
+  .vazio .em{font-size:3rem;margin-bottom:12px;display:block}
+  .card{
+    background:white;
+    border-radius:var(--radius);
+    padding:18px 20px;
+    box-shadow:0 2px 12px rgba(26,58,92,.06);
+    border-left:4px solid var(--laranja);
+    transition:all .25s;
+    animation:slideIn .4s ease backwards;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:14px;align-items:center;
+  }
+  .card.novo{
+    border-left-color:var(--verde);
+    box-shadow:0 4px 20px rgba(16,185,129,.25);
+    animation:pulse-novo 1.5s ease;
+  }
+  @keyframes pulse-novo{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.01)}
+  }
+  @keyframes slideIn{
+    from{opacity:0;transform:translateY(10px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  .card-info{min-width:0}
+  .card-nome{
+    font-size:1rem;font-weight:800;
+    color:var(--azul-escuro);letter-spacing:-.01em;
+    margin-bottom:2px;
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  }
+  .badge-novo{
+    background:var(--verde);color:white;
+    font-size:.65rem;font-weight:800;
+    padding:3px 8px;border-radius:100px;
+    letter-spacing:.05em;
+    animation:pulse 1.5s infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1}
+    50%{opacity:.5}
+  }
+  .card-linha{
+    font-size:.85rem;color:var(--cinza-500);
+    display:flex;align-items:center;gap:6px;
+    margin-top:3px;
+  }
+  .card-linha strong{color:var(--cinza-800);font-weight:600}
+  .card-tags{
+    display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;
+  }
+  .tag{
+    background:var(--cinza-100);
+    border:1px solid var(--cinza-200);
+    color:var(--cinza-500);
+    font-size:.7rem;font-weight:700;
+    padding:4px 10px;border-radius:100px;
+    text-transform:uppercase;letter-spacing:.04em;
+  }
+  .tag.perfil{background:#FEF3C7;border-color:#FDE68A;color:#92400E}
+  .tag.area{background:#DBEAFE;border-color:#BFDBFE;color:#1E40AF}
+  .card-actions{
+    display:flex;flex-direction:column;gap:6px;
+    align-items:flex-end;
+  }
+  .card-hora{
+    font-size:.7rem;color:var(--cinza-500);
+    text-align:right;line-height:1.3;
+  }
+  .card-btn{
+    background:var(--cinza-100);
+    border:1px solid var(--cinza-200);
+    color:var(--cinza-800);
+    padding:7px 12px;border-radius:8px;
+    font-size:.75rem;font-weight:700;cursor:pointer;
+    font-family:inherit;transition:all .2s;
+    text-decoration:none;display:inline-block;
+    text-align:center;min-width:78px;
+  }
+  .card-btn:hover{background:var(--cinza-200)}
+  .card-btn.wpp{background:#DCFCE7;border-color:#BBF7D0;color:#166534}
+  .card-btn.wpp:hover{background:#BBF7D0}
+  .card-btn.mail{background:#DBEAFE;border-color:#BFDBFE;color:#1E40AF}
+  .card-btn.mail:hover{background:#BFDBFE}
+
+  /* ===== TOAST ===== */
+  .toast-container{
+    position:fixed;top:80px;right:20px;z-index:9999;
+    display:flex;flex-direction:column;gap:10px;
+    pointer-events:none;
+  }
+  .toast{
+    background:white;
+    border-left:4px solid var(--verde);
+    border-radius:12px;
+    padding:16px 20px;
+    box-shadow:0 8px 30px rgba(0,0,0,.15);
+    min-width:280px;max-width:380px;
+    animation:slideRight .4s ease;
+    pointer-events:auto;
+  }
+  @keyframes slideRight{
+    from{opacity:0;transform:translateX(100%)}
+    to{opacity:1;transform:translateX(0)}
+  }
+  .toast-title{
+    font-weight:800;color:var(--azul-escuro);
+    font-size:.9rem;margin-bottom:4px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .toast-title .em{font-size:1.1rem}
+  .toast-body{font-size:.85rem;color:var(--cinza-500)}
+  .toast-body strong{color:var(--cinza-800)}
+
+  /* ===== MODAL CONFIRMAR ===== */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,.5);
+    display:none;align-items:center;justify-content:center;
+    z-index:10000;padding:20px;
+    backdrop-filter:blur(4px);
+  }
+  .modal-overlay.show{display:flex}
+  .modal{
+    background:white;border-radius:16px;
+    padding:28px;max-width:420px;width:100%;
+  }
+  .modal h3{
+    font-size:1.2rem;font-weight:800;
+    color:var(--azul-escuro);margin-bottom:10px;
+  }
+  .modal p{color:var(--cinza-500);font-size:.9rem;margin-bottom:22px}
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end}
+  .modal-btn{
+    padding:11px 20px;border-radius:10px;border:none;
+    font-weight:700;font-size:.9rem;cursor:pointer;
+    font-family:inherit;transition:all .2s;
+  }
+  .modal-btn.cancel{background:var(--cinza-100);color:var(--cinza-800)}
+  .modal-btn.danger{background:var(--vermelho);color:white}
+  .modal-btn:hover{transform:translateY(-1px)}
+
+  @media (max-width:600px){
+    .header{padding:14px 16px}
+    .header-brand{font-size:.95rem}
+    .header-btn{padding:8px 12px;font-size:.8rem}
+    .container{padding:20px 16px 60px}
+    .card{grid-template-columns:1fr}
+    .card-actions{
+      flex-direction:row;justify-content:flex-start;
+      align-items:center;flex-wrap:wrap;
+    }
+    .card-hora{text-align:left;order:2}
+    .toast-container{top:auto;bottom:20px;right:10px;left:10px}
+    .toast{min-width:0;max-width:100%}
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo"></div>
+    <h1>Painel Administrativo</h1>
+    <p>LPXConstrutor — Cadastros</p>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="E-mail" required autocomplete="username">
+      <input type="password" id="loginPassword" placeholder="Senha" required autocomplete="current-password">
+      <button type="submit" id="btnLogin">Entrar</button>
+      <div class="login-msg" id="loginMsg"></div>
+    </form>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="appScreen" style="display:none">
+
+  <div class="header">
+    <div class="header-brand">
+      <div class="icon"></div>
+      <div>LPX<span class="orange">Admin</span></div>
+    </div>
+    <div class="header-actions">
+      <div class="notif-status off" id="notifStatus">
+        <span class="dot"></span>
+        <span id="notifText">Notificações off</span>
+      </div>
+      <button class="header-btn" id="btnNotif" title="Ativar notificações">
+        🔔 Ativar
+      </button>
+      <button class="header-btn" id="btnExport">
+        📥 CSV
+      </button>
+      <button class="header-btn" id="btnLogout">
+        🚪 Sair
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Total</div>
+        <div class="stat-value" id="statTotal">0</div>
+      </div>
+      <div class="stat-card hoje">
+        <div class="stat-label">Hoje</div>
+        <div class="stat-value" id="statHoje">0</div>
+      </div>
+      <div class="stat-card semana">
+        <div class="stat-label">Últimos 7 dias</div>
+        <div class="stat-value" id="statSemana">0</div>
+      </div>
+      <div class="stat-card tipo">
+        <div class="stat-label">Empresas</div>
+        <div class="stat-value" id="statEmpresas">0</div>
+      </div>
+    </div>
+
+    <div class="filters">
+      <input type="text" class="search-input" id="searchInput" placeholder="🔍 Buscar por nome, e-mail, cidade...">
+      <select class="filter-select" id="filterPerfil">
+        <option value="">Todos os perfis</option>
+        <option value="profissional">Profissional autônomo</option>
+        <option value="empresa">Empresa / Construtora</option>
+        <option value="engenheiro">Engenheiro / Arquiteto</option>
+        <option value="contratante">Contratante / Cliente</option>
+        <option value="outro">Outro</option>
+      </select>
+      <select class="filter-select" id="filterArea">
+        <option value="">Todas as áreas</option>
+        <option value="alvenaria">Alvenaria</option>
+        <option value="eletrica">Elétrica</option>
+        <option value="hidraulica">Hidráulica</option>
+        <option value="pintura">Pintura</option>
+        <option value="revestimento">Revestimento</option>
+        <option value="estrutura">Estrutura</option>
+        <option value="acabamento">Acabamento</option>
+        <option value="projeto">Projeto</option>
+        <option value="gestao">Gestão</option>
+        <option value="outro">Outro</option>
+      </select>
+    </div>
+
+    <div class="lista" id="lista">
+      <div class="vazio">
+        <span class="em">⏳</span>
+        <div>Carregando cadastros...</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3 id="modalTitle">Confirmar</h3>
+    <p id="modalText">Tem certeza?</p>
+    <div class="modal-actions">
+      <button class="modal-btn cancel" id="modalCancel">Cancelar</button>
+      <button class="modal-btn danger" id="modalConfirm">Excluir</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import {
+    getFirestore, collection, query, orderBy, onSnapshot,
+    doc, deleteDoc, Timestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import {
+    getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  // ====== CONFIGURAÇÃO ======
+  const firebaseConfig = {
+    apiKey: "AIzaSyAC4dMxTeLh7AaEWXqkHdmB1FFhZXyKyY0",
+    authDomain: "lpxlandpage.firebaseapp.com",
+    projectId: "lpxlandpage",
+    storageBucket: "lpxlandpage.firebasestorage.app",
+    messagingSenderId: "957822248703",
+    appId: "1:957822248703:web:6004ea994eaa48b8664eca",
+    measurementId: "G-QPDLVZX8ND"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  // ====== ESTADO ======
+  let todosCadastros = [];
+  let idsConhecidos = new Set();
+  let primeiroCarregamento = true;
+  let unsubscribeSnapshot = null;
+
+  // ====== ELEMENTOS ======
+  const loginScreen = document.getElementById('loginScreen');
+  const appScreen = document.getElementById('appScreen');
+  const loginForm = document.getElementById('loginForm');
+  const loginEmail = document.getElementById('loginEmail');
+  const loginPassword = document.getElementById('loginPassword');
+  const loginMsg = document.getElementById('loginMsg');
+  const btnLogin = document.getElementById('btnLogin');
+  const btnLogout = document.getElementById('btnLogout');
+  const btnNotif = document.getElementById('btnNotif');
+  const btnExport = document.getElementById('btnExport');
+  const notifStatus = document.getElementById('notifStatus');
+  const notifText = document.getElementById('notifText');
+  const listaEl = document.getElementById('lista');
+  const searchInput = document.getElementById('searchInput');
+  const filterPerfil = document.getElementById('filterPerfil');
+  const filterArea = document.getElementById('filterArea');
+  const toastContainer = document.getElementById('toastContainer');
+
+  // ====== LOGIN ======
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btnLogin.disabled = true;
+    btnLogin.textContent = 'Entrando...';
+    loginMsg.className = 'login-msg';
+    try {
+      await signInWithEmailAndPassword(auth, loginEmail.value.trim(), loginPassword.value);
+    } catch (err) {
+      console.error(err);
+      let txt = 'Erro ao entrar.';
+      if (err.code === 'auth/invalid-credential' || err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
+        txt = 'E-mail ou senha incorretos.';
+      } else if (err.code === 'auth/invalid-email') {
+        txt = 'E-mail inválido.';
+      } else if (err.code === 'auth/too-many-requests') {
+        txt = 'Muitas tentativas. Tente novamente em alguns minutos.';
+      }
+      loginMsg.className = 'login-msg err';
+      loginMsg.textContent = txt;
+    } finally {
+      btnLogin.disabled = false;
+      btnLogin.textContent = 'Entrar';
+    }
+  });
+
+  btnLogout.addEventListener('click', async () => {
+    if (unsubscribeSnapshot) unsubscribeSnapshot();
+    await signOut(auth);
+  });
+
+  // ====== MONITORAR AUTENTICAÇÃO ======
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      loginScreen.style.display = 'none';
+      appScreen.style.display = 'block';
+      iniciarListener();
+      atualizarStatusNotif();
+    } else {
+      loginScreen.style.display = 'flex';
+      appScreen.style.display = 'none';
+      if (unsubscribeSnapshot) { unsubscribeSnapshot(); unsubscribeSnapshot = null; }
+      idsConhecidos.clear();
+      primeiroCarregamento = true;
+    }
+  });
+
+  // ====== LISTENER EM TEMPO REAL ======
+  function iniciarListener() {
+    if (unsubscribeSnapshot) unsubscribeSnapshot();
+    const q = query(collection(db, 'cadastros'), orderBy('criadoEm', 'desc'));
+
+    unsubscribeSnapshot = onSnapshot(q, (snapshot) => {
+      // Detectar novos documentos
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === 'added') {
+          const id = change.doc.id;
+          if (!idsConhecidos.has(id) && !primeiroCarregamento) {
+            const dados = change.doc.data();
+            notificarNovo(dados);
+            mostrarToastNovo(dados);
+          }
+          idsConhecidos.add(id);
+        } else if (change.type === 'removed') {
+          idsConhecidos.delete(change.doc.id);
+        }
+      });
+      primeiroCarregamento = false;
+
+      // Atualizar lista completa
+      todosCadastros = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
+      atualizarStats();
+      renderizarLista();
+    }, (err) => {
+      console.error('Erro no listener:', err);
+      listaEl.innerHTML = '<div class="vazio"><span class="em">⚠️</span><div>Erro ao carregar. Verifique as regras do Firestore.</div></div>';
+    });
+  }
+
+  // ====== ESTATÍSTICAS ======
+  function atualizarStats() {
+    const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
+    const seteDiasAtras = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+
+    let countHoje = 0, countSemana = 0, countEmpresas = 0;
+
+    todosCadastros.forEach((c) => {
+      const data = c.criadoEm?.toDate ? c.criadoEm.toDate() : null;
+      if (data) {
+        if (data >= hoje) countHoje++;
+        if (data >= seteDiasAtras) countSemana++;
+      }
+      if (c.perfil === 'empresa') countEmpresas++;
+    });
+
+    document.getElementById('statTotal').textContent = todosCadastros.length;
+    document.getElementById('statHoje').textContent = countHoje;
+    document.getElementById('statSemana').textContent = countSemana;
+    document.getElementById('statEmpresas').textContent = countEmpresas;
+  }
+
+  // ====== RENDERIZAR LISTA ======
+  function renderizarLista() {
+    const busca = searchInput.value.trim().toLowerCase();
+    const perfil = filterPerfil.value;
+    const area = filterArea.value;
+
+    const filtrados = todosCadastros.filter((c) => {
+      if (perfil && c.perfil !== perfil) return false;
+      if (area && c.area !== area) return false;
+      if (busca) {
+        const texto = `${c.nome} ${c.email} ${c.cidade} ${c.whatsapp}`.toLowerCase();
+        if (!texto.includes(busca)) return false;
+      }
+      return true;
+    });
+
+    if (filtrados.length === 0) {
+      listaEl.innerHTML = `
+        <div class="vazio">
+          <span class="em">📭</span>
+          <div>${todosCadastros.length === 0 ? 'Nenhum cadastro ainda.' : 'Nenhum cadastro encontrado com esses filtros.'}</div>
+        </div>`;
+      return;
+    }
+
+    listaEl.innerHTML = filtrados.map((c) => {
+      const data = c.criadoEm?.toDate ? c.criadoEm.toDate() : null;
+      const dataStr = data ? data.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '—';
+      const horaStr = data ? data.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '';
+      const wppLink = `https://wa.me/55${(c.whatsapp || '').replace(/\D/g, '')}`;
+      const emailLink = `mailto:${c.email}`;
+      const nomeSafe = escapar(c.nome || '');
+      const emojiPerfil = {
+        profissional: '👷',
+        empresa: '🏢',
+        engenheiro: '📐',
+        contratante: '🏠',
+        outro: '👤'
+      }[c.perfil] || '👤';
+
+      return `
+        <div class="card" data-id="${c.id}">
+          <div class="card-info">
+            <div class="card-nome">${emojiPerfil} ${nomeSafe}</div>
+            <div class="card-linha">📧 <strong>${escapar(c.email || '')}</strong></div>
+            <div class="card-linha">📱 ${escapar(c.whatsapp || '')} &nbsp;·&nbsp; 📍 ${escapar(c.cidade || '')}</div>
+            <div class="card-tags">
+              <span class="tag perfil">${escapar(c.perfil || '')}</span>
+              <span class="tag area">${escapar(c.area || '')}</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <div class="card-hora">${dataStr}<br>${horaStr}</div>
+            <a href="${wppLink}" target="_blank" class="card-btn wpp">💬 WhatsApp</a>
+            <a href="${emailLink}" class="card-btn mail">✉️ E-mail</a>
+          </div>
+        </div>`;
+    }).join('');
+
+    // Marca como "novo" os que chegaram nos últimos 10 segundos
+    const agora = Date.now();
+    filtrados.forEach((c) => {
+      const data = c.criadoEm?.toDate ? c.criadoEm.toDate() : null;
+      if (data && (agora - data.getTime()) < 10000) {
+        const el = document.querySelector(`.card[data-id="${c.id}"]`);
+        if (el) el.classList.add('novo');
+      }
+    });
+  }
+
+  function escapar(str) {
+    return String(str).replace(/[&<>"']/g, (m) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[m]);
+  }
+
+  // ====== FILTROS ======
+  searchInput.addEventListener('input', renderizarLista);
+  filterPerfil.addEventListener('change', renderizarLista);
+  filterArea.addEventListener('change', renderizarLista);
+
+  // ====== NOTIFICAÇÕES ======
+  function atualizarStatusNotif() {
+    if (!('Notification' in window)) {
+      notifStatus.classList.add('off');
+      notifText.textContent = 'Não suportado';
+      btnNotif.style.display = 'none';
+      return;
+    }
+    if (Notification.permission === 'granted') {
+      notifStatus.classList.remove('off');
+      notifText.textContent = 'Notificações ativas';
+      btnNotif.style.display = 'none';
+    } else {
+      notifStatus.classList.add('off');
+      notifText.textContent = 'Notificações off';
+      btnNotif.style.display = '';
+    }
+  }
+
+  btnNotif.addEventListener('click', async () => {
+    if (!('Notification' in window)) {
+      alert('Este navegador não suporta notificações.');
+      return;
+    }
+    const perm = await Notification.requestPermission();
+    atualizarStatusNotif();
+    if (perm === 'granted') {
+      new Notification('✅ Notificações ativadas!', {
+        body: 'Você vai receber um aviso quando alguém se cadastrar.',
+        icon: 'logo capacetebranco.png'
+      });
+    }
+  });
+
+  function notificarNovo(dados) {
+    if (!('Notification' in window) || Notification.permission !== 'granted') return;
+    try {
+      const nome = dados.nome || 'Alguém';
+      const n = new Notification('🎉 Novo cadastro no LPXConstrutor!', {
+        body: `${nome}\n${dados.cidade || ''}\n${dados.perfil || ''} · ${dados.area || ''}`,
+        icon: 'logo capacetebranco.png',
+        badge: 'logo capacetebranco.png',
+        tag: 'novo-cadastro-' + Date.now(),
+        requireInteraction: true
+      });
+      n.onclick = () => {
+        window.focus();
+        n.close();
+      };
+    } catch (e) {
+      console.error('Erro ao notificar:', e);
+    }
+    tocarSom();
+  }
+
+  function tocarSom() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.value = 880;
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.4);
+      // Segundo bipe
+      setTimeout(() => {
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.connect(gain2); gain2.connect(ctx.destination);
+        osc2.frequency.value = 1100;
+        osc2.type = 'sine';
+        gain2.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+        osc2.start();
+        osc2.stop(ctx.currentTime + 0.4);
+      }, 200);
+    } catch (e) { /* ignora */ }
+  }
+
+  // ====== TOAST ======
+  function mostrarToastNovo(dados) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `
+      <div class="toast-title"><span class="em">🎉</span> Novo cadastro!</div>
+      <div class="toast-body">
+        <strong>${escapar(dados.nome || '')}</strong><br>
+        ${escapar(dados.cidade || '')} · ${escapar(dados.perfil || '')}
+      </div>`;
+    toastContainer.appendChild(toast);
+    setTimeout(() => {
+      toast.style.transition = 'all .4s';
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(100%)';
+      setTimeout(() => toast.remove(), 400);
+    }, 6000);
+  }
+
+  // ====== EXPORTAR CSV ======
+  btnExport.addEventListener('click', () => {
+    if (todosCadastros.length === 0) {
+      alert('Não há cadastros para exportar.');
+      return;
+    }
+    const cabecalho = ['Data', 'Nome', 'Email', 'WhatsApp', 'Cidade', 'Perfil', 'Area'];
+    const linhas = todosCadastros.map((c) => {
+      const data = c.criadoEm?.toDate ? c.criadoEm.toDate().toLocaleString('pt-BR') : '';
+      return [
+        data,
+        c.nome || '',
+        c.email || '',
+        c.whatsapp || '',
+        c.cidade || '',
+        c.perfil || '',
+        c.area || ''
+      ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',');
+    });
+    const csv = '\uFEFF' + [cabecalho.join(','), ...linhas].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `lpxcadastros-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+</script>
+
+</body>
+</html>
