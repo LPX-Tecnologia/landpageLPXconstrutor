@@ -12,358 +12,158 @@
 
 <style>
   :root{
-    --azul-escuro:#1A3A5C;
-    --azul-medio:#24507A;
-    --azul-claro:#3B7BB8;
-    --laranja:#F59E0B;
-    --laranja-escuro:#D97706;
-    --amarelo:#FCD34D;
-    --verde:#10B981;
-    --vermelho:#EF4444;
-    --branco:#FFFFFF;
-    --cinza-100:#F8FAFC;
-    --cinza-200:#E2E8F0;
-    --cinza-300:#CBD5E1;
-    --cinza-500:#64748B;
-    --cinza-800:#1E293B;
-    --radius:14px;
+    --azul-escuro:#1A3A5C;--azul-medio:#24507A;--azul-claro:#3B7BB8;
+    --laranja:#F59E0B;--laranja-escuro:#D97706;--amarelo:#FCD34D;
+    --verde:#10B981;--vermelho:#EF4444;--branco:#FFFFFF;
+    --cinza-100:#F8FAFC;--cinza-200:#E2E8F0;--cinza-300:#CBD5E1;
+    --cinza-500:#64748B;--cinza-800:#1E293B;--radius:14px;
   }
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  body{
-    font-family:'Inter',system-ui,-apple-system,sans-serif;
-    background:var(--cinza-100);
-    color:var(--cinza-800);
-    line-height:1.6;
-    min-height:100vh;
-  }
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--cinza-100);color:var(--cinza-800);line-height:1.6;min-height:100vh}
   a{color:inherit;text-decoration:none}
 
-  /* ===== LOGIN ===== */
-  .login-screen{
-    min-height:100vh;
-    display:flex;align-items:center;justify-content:center;
-    padding:24px;
-    background:
-      radial-gradient(ellipse at top right, rgba(91,163,224,.25), transparent 50%),
-      radial-gradient(ellipse at bottom left, rgba(245,158,11,.15), transparent 50%),
-      linear-gradient(135deg, #0F2640 0%, var(--azul-escuro) 50%, #1E4A73 100%);
-  }
-  .login-box{
-    background:white;
-    border-radius:20px;
-    padding:44px 36px;
-    max-width:420px;width:100%;
-    box-shadow:0 30px 80px rgba(0,0,0,.4);
-  }
-  .login-logo{
-    width:80px;height:80px;border-radius:50%;
-    background:url('logo capacetebranco.png') center/cover no-repeat;
-    margin:0 auto 20px;
-    box-shadow:0 8px 20px rgba(245,158,11,.35);
-    border:3px solid var(--laranja);
-  }
-  .login-box h1{
-    font-size:1.6rem;font-weight:900;text-align:center;
-    color:var(--azul-escuro);letter-spacing:-.02em;
-    margin-bottom:6px;
-  }
-  .login-box p{
-    text-align:center;color:var(--cinza-500);
-    font-size:.9rem;margin-bottom:28px;
-  }
-  .login-box input{
-    width:100%;
-    padding:16px 18px;
-    border-radius:12px;
-    border:1px solid var(--cinza-200);
-    background:var(--cinza-100);
-    font-size:.95rem;font-family:inherit;
-    outline:none;transition:all .2s;
-    margin-bottom:14px;
-  }
-  .login-box input:focus{
-    border-color:var(--laranja);
-    background:white;
-    box-shadow:0 0 0 4px rgba(245,158,11,.15);
-  }
-  .login-box button{
-    width:100%;
-    padding:16px;
-    border-radius:12px;border:none;
-    background:linear-gradient(135deg,var(--laranja),var(--laranja-escuro));
-    color:white;font-size:1rem;font-weight:800;
-    cursor:pointer;font-family:inherit;
-    transition:all .25s;margin-top:8px;
-  }
-  .login-box button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 12px 30px rgba(245,158,11,.5);
-  }
+  /* LOGIN */
+  .login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
+    background:radial-gradient(ellipse at top right,rgba(91,163,224,.25),transparent 50%),radial-gradient(ellipse at bottom left,rgba(245,158,11,.15),transparent 50%),linear-gradient(135deg,#0F2640 0%,var(--azul-escuro) 50%,#1E4A73 100%)}
+  .login-box{background:white;border-radius:20px;padding:44px 36px;max-width:420px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+  .login-logo{width:80px;height:80px;border-radius:50%;background:url('logo capacetebranco.png') center/cover no-repeat;margin:0 auto 20px;box-shadow:0 8px 20px rgba(245,158,11,.35);border:3px solid var(--laranja)}
+  .login-box h1{font-size:1.6rem;font-weight:900;text-align:center;color:var(--azul-escuro);letter-spacing:-.02em;margin-bottom:6px}
+  .login-box p{text-align:center;color:var(--cinza-500);font-size:.9rem;margin-bottom:28px}
+  .login-box input{width:100%;padding:16px 18px;border-radius:12px;border:1px solid var(--cinza-200);background:var(--cinza-100);font-size:.95rem;font-family:inherit;outline:none;transition:all .2s;margin-bottom:14px}
+  .login-box input:focus{border-color:var(--laranja);background:white;box-shadow:0 0 0 4px rgba(245,158,11,.15)}
+  .login-box button{width:100%;padding:16px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--laranja),var(--laranja-escuro));color:white;font-size:1rem;font-weight:800;cursor:pointer;font-family:inherit;transition:all .25s;margin-top:8px}
+  .login-box button:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(245,158,11,.5)}
   .login-box button:disabled{opacity:.6;cursor:not-allowed;transform:none}
-  .login-msg{
-    margin-top:14px;padding:12px;border-radius:10px;
-    font-size:.85rem;text-align:center;display:none;
-  }
+  .login-msg{margin-top:14px;padding:12px;border-radius:10px;font-size:.85rem;text-align:center;display:none}
   .login-msg.err{display:block;background:#FEF2F2;color:#991B1B;border:1px solid #FECACA}
   .login-msg.ok{display:block;background:#F0FDF4;color:#166534;border:1px solid #BBF7D0}
 
-  /* ===== HEADER ===== */
-  .header{
-    background:linear-gradient(135deg,var(--azul-escuro),var(--azul-medio));
-    color:white;
-    padding:20px 24px;
-    display:flex;align-items:center;justify-content:space-between;
-    gap:16px;flex-wrap:wrap;
-    position:sticky;top:0;z-index:100;
-    box-shadow:0 4px 20px rgba(0,0,0,.15);
-  }
-  .header-brand{
-    display:flex;align-items:center;gap:12px;
-    font-weight:800;font-size:1.05rem;
-  }
-  .header-brand .icon{
-    width:36px;height:36px;border-radius:50%;
-    background:url('logo capacetebranco.png') center/cover no-repeat;
-    border:2px solid var(--laranja);flex-shrink:0;
-  }
+  /* HEADER */
+  .header{background:linear-gradient(135deg,var(--azul-escuro),var(--azul-medio));color:white;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+  .header-brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.05rem}
+  .header-brand .icon{width:36px;height:36px;border-radius:50%;background:url('logo capacetebranco.png') center/cover no-repeat;border:2px solid var(--laranja);flex-shrink:0}
   .header-brand span.orange{color:var(--laranja)}
   .header-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .header-btn{
-    background:rgba(255,255,255,.1);
-    border:1px solid rgba(255,255,255,.2);
-    color:white;padding:10px 16px;border-radius:10px;
-    font-size:.85rem;font-weight:600;cursor:pointer;
-    font-family:inherit;transition:all .2s;
-    display:inline-flex;align-items:center;gap:6px;
-  }
+  .header-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;padding:10px 16px;border-radius:10px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
   .header-btn:hover{background:rgba(255,255,255,.2)}
-  .header-btn.active{
-    background:var(--laranja);border-color:var(--laranja);
-    color:var(--azul-escuro);
-  }
-  .notif-status{
-    font-size:.75rem;padding:6px 12px;border-radius:100px;
-    background:rgba(255,255,255,.15);
-    display:inline-flex;align-items:center;gap:6px;
-  }
-  .notif-status .dot{
-    width:8px;height:8px;border-radius:50%;
-    background:var(--verde);
-  }
+  .header-btn.bulk{background:var(--laranja);border-color:var(--laranja);color:var(--azul-escuro);font-weight:800}
+  .header-btn.bulk:hover{background:var(--amarelo)}
+  .notif-status{font-size:.75rem;padding:6px 12px;border-radius:100px;background:rgba(255,255,255,.15);display:inline-flex;align-items:center;gap:6px}
+  .notif-status .dot{width:8px;height:8px;border-radius:50%;background:var(--verde)}
   .notif-status.off .dot{background:var(--vermelho)}
 
-  /* ===== CONTAINER ===== */
-  .container{
-    max-width:1200px;margin:0 auto;
-    padding:32px 24px 80px;
-  }
+  .container{max-width:1200px;margin:0 auto;padding:32px 24px 80px}
 
-  /* ===== STATS ===== */
-  .stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:16px;margin-bottom:28px;
-  }
-  .stat-card{
-    background:white;
-    border-radius:var(--radius);
-    padding:22px;
-    box-shadow:0 2px 12px rgba(26,58,92,.06);
-    border-left:4px solid var(--laranja);
-    transition:all .3s;
-  }
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+  .stat-card{background:white;border-radius:var(--radius);padding:22px;box-shadow:0 2px 12px rgba(26,58,92,.06);border-left:4px solid var(--laranja);transition:all .3s}
   .stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,58,92,.12)}
-  .stat-label{
-    font-size:.75rem;font-weight:700;
-    text-transform:uppercase;letter-spacing:.08em;
-    color:var(--cinza-500);margin-bottom:6px;
-  }
-  .stat-value{
-    font-size:1.9rem;font-weight:900;
-    color:var(--azul-escuro);letter-spacing:-.02em;
-    line-height:1;
-  }
+  .stat-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--cinza-500);margin-bottom:6px}
+  .stat-value{font-size:1.9rem;font-weight:900;color:var(--azul-escuro);letter-spacing:-.02em;line-height:1}
   .stat-card.hoje{border-left-color:var(--verde)}
   .stat-card.semana{border-left-color:var(--azul-claro)}
   .stat-card.tipo{border-left-color:#8B5CF6}
 
-  /* ===== FILTROS ===== */
-  .filters{
-    background:white;border-radius:var(--radius);
-    padding:18px 20px;margin-bottom:20px;
-    box-shadow:0 2px 12px rgba(26,58,92,.06);
-    display:flex;gap:12px;flex-wrap:wrap;align-items:center;
-  }
-  .search-input{
-    flex:1;min-width:220px;
-    padding:12px 16px;border-radius:10px;
-    border:1px solid var(--cinza-200);
-    background:var(--cinza-100);
-    font-size:.9rem;font-family:inherit;
-    outline:none;transition:all .2s;
-  }
-  .search-input:focus{
-    border-color:var(--laranja);
-    background:white;
-    box-shadow:0 0 0 4px rgba(245,158,11,.15);
-  }
-  .filter-select{
-    padding:12px 16px;border-radius:10px;
-    border:1px solid var(--cinza-200);
-    background:var(--cinza-100);
-    font-size:.9rem;font-family:inherit;
-    outline:none;cursor:pointer;
-  }
+  /* FILTROS */
+  .filters{background:white;border-radius:var(--radius);padding:18px 20px;margin-bottom:20px;box-shadow:0 2px 12px rgba(26,58,92,.06);display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .search-input{flex:1;min-width:220px;padding:12px 16px;border-radius:10px;border:1px solid var(--cinza-200);background:var(--cinza-100);font-size:.9rem;font-family:inherit;outline:none;transition:all .2s}
+  .search-input:focus{border-color:var(--laranja);background:white;box-shadow:0 0 0 4px rgba(245,158,11,.15)}
+  .filter-select{padding:12px 16px;border-radius:10px;border:1px solid var(--cinza-200);background:var(--cinza-100);font-size:.9rem;font-family:inherit;outline:none;cursor:pointer}
 
-  /* ===== LISTA ===== */
+  /* LISTA */
   .lista{display:flex;flex-direction:column;gap:12px}
-  .vazio{
-    background:white;border-radius:var(--radius);
-    padding:60px 24px;text-align:center;
-    color:var(--cinza-500);
-  }
+  .vazio{background:white;border-radius:var(--radius);padding:60px 24px;text-align:center;color:var(--cinza-500)}
   .vazio .em{font-size:3rem;margin-bottom:12px;display:block}
-  .card{
-    background:white;
-    border-radius:var(--radius);
-    padding:18px 20px;
-    box-shadow:0 2px 12px rgba(26,58,92,.06);
-    border-left:4px solid var(--laranja);
-    transition:all .25s;
-    animation:slideIn .4s ease backwards;
-    display:grid;
-    grid-template-columns:1fr auto;
-    gap:14px;align-items:center;
-  }
-  .card.novo{
-    border-left-color:var(--verde);
-    box-shadow:0 4px 20px rgba(16,185,129,.25);
-    animation:pulse-novo 1.5s ease;
-  }
-  @keyframes pulse-novo{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.01)}
-  }
-  @keyframes slideIn{
-    from{opacity:0;transform:translateY(10px)}
-    to{opacity:1;transform:translateY(0)}
-  }
+  .card{background:white;border-radius:var(--radius);padding:18px 20px;box-shadow:0 2px 12px rgba(26,58,92,.06);border-left:4px solid var(--laranja);transition:all .25s;animation:slideIn .4s ease backwards;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
+  .card.novo{border-left-color:var(--verde);box-shadow:0 4px 20px rgba(16,185,129,.25);animation:pulse-novo 1.5s ease}
+  @keyframes pulse-novo{0%,100%{transform:scale(1)}50%{transform:scale(1.01)}}
+  @keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
   .card-info{min-width:0}
-  .card-nome{
-    font-size:1rem;font-weight:800;
-    color:var(--azul-escuro);letter-spacing:-.01em;
-    margin-bottom:2px;
-    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-  }
-  .badge-novo{
-    background:var(--verde);color:white;
-    font-size:.65rem;font-weight:800;
-    padding:3px 8px;border-radius:100px;
-    letter-spacing:.05em;
-    animation:pulse 1.5s infinite;
-  }
-  @keyframes pulse{
-    0%,100%{opacity:1}
-    50%{opacity:.5}
-  }
-  .card-linha{
-    font-size:.85rem;color:var(--cinza-500);
-    display:flex;align-items:center;gap:6px;
-    margin-top:3px;
-  }
+  .card-nome{font-size:1rem;font-weight:800;color:var(--azul-escuro);letter-spacing:-.01em;margin-bottom:2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .badge-novo{background:var(--verde);color:white;font-size:.65rem;font-weight:800;padding:3px 8px;border-radius:100px;letter-spacing:.05em;animation:pulse 1.5s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+  .card-linha{font-size:.85rem;color:var(--cinza-500);display:flex;align-items:center;gap:6px;margin-top:3px}
   .card-linha strong{color:var(--cinza-800);font-weight:600}
-  .card-tags{
-    display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;
-  }
-  .tag{
-    background:var(--cinza-100);
-    border:1px solid var(--cinza-200);
-    color:var(--cinza-500);
-    font-size:.7rem;font-weight:700;
-    padding:4px 10px;border-radius:100px;
-    text-transform:uppercase;letter-spacing:.04em;
-  }
+  .card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .tag{background:var(--cinza-100);border:1px solid var(--cinza-200);color:var(--cinza-500);font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.04em}
   .tag.perfil{background:#FEF3C7;border-color:#FDE68A;color:#92400E}
   .tag.area{background:#DBEAFE;border-color:#BFDBFE;color:#1E40AF}
-  .card-actions{
-    display:flex;flex-direction:column;gap:6px;
-    align-items:flex-end;
-  }
-  .card-hora{
-    font-size:.7rem;color:var(--cinza-500);
-    text-align:right;line-height:1.3;
-  }
-  .card-btn{
-    background:var(--cinza-100);
-    border:1px solid var(--cinza-200);
-    color:var(--cinza-800);
-    padding:7px 12px;border-radius:8px;
-    font-size:.75rem;font-weight:700;cursor:pointer;
-    font-family:inherit;transition:all .2s;
-    text-decoration:none;display:inline-block;
-    text-align:center;min-width:78px;
-  }
+  .card-actions{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+  .card-hora{font-size:.7rem;color:var(--cinza-500);text-align:right;line-height:1.3;margin-bottom:4px}
+  .card-btn{background:var(--cinza-100);border:1px solid var(--cinza-200);color:var(--cinza-800);padding:7px 12px;border-radius:8px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;text-decoration:none;display:inline-block;text-align:center;min-width:78px}
   .card-btn:hover{background:var(--cinza-200)}
   .card-btn.wpp{background:#DCFCE7;border-color:#BBF7D0;color:#166534}
   .card-btn.wpp:hover{background:#BBF7D0}
   .card-btn.mail{background:#DBEAFE;border-color:#BFDBFE;color:#1E40AF}
   .card-btn.mail:hover{background:#BFDBFE}
+  .card-btn.convite{background:linear-gradient(135deg,var(--laranja),var(--laranja-escuro));border-color:var(--laranja-escuro);color:white;font-weight:800}
+  .card-btn.convite:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(245,158,11,.4)}
 
-  /* ===== TOAST ===== */
-  .toast-container{
-    position:fixed;top:80px;right:20px;z-index:9999;
-    display:flex;flex-direction:column;gap:10px;
-    pointer-events:none;
-  }
-  .toast{
-    background:white;
-    border-left:4px solid var(--verde);
-    border-radius:12px;
-    padding:16px 20px;
-    box-shadow:0 8px 30px rgba(0,0,0,.15);
-    min-width:280px;max-width:380px;
-    animation:slideRight .4s ease;
-    pointer-events:auto;
-  }
-  @keyframes slideRight{
-    from{opacity:0;transform:translateX(100%)}
-    to{opacity:1;transform:translateX(0)}
-  }
-  .toast-title{
-    font-weight:800;color:var(--azul-escuro);
-    font-size:.9rem;margin-bottom:4px;
-    display:flex;align-items:center;gap:8px;
-  }
+  /* TOAST */
+  .toast-container{position:fixed;top:80px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+  .toast{background:white;border-left:4px solid var(--verde);border-radius:12px;padding:16px 20px;box-shadow:0 8px 30px rgba(0,0,0,.15);min-width:280px;max-width:380px;animation:slideRight .4s ease;pointer-events:auto}
+  @keyframes slideRight{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}}
+  .toast-title{font-weight:800;color:var(--azul-escuro);font-size:.9rem;margin-bottom:4px;display:flex;align-items:center;gap:8px}
   .toast-title .em{font-size:1.1rem}
   .toast-body{font-size:.85rem;color:var(--cinza-500)}
   .toast-body strong{color:var(--cinza-800)}
 
-  /* ===== MODAL CONFIRMAR ===== */
-  .modal-overlay{
-    position:fixed;inset:0;background:rgba(0,0,0,.5);
-    display:none;align-items:center;justify-content:center;
-    z-index:10000;padding:20px;
-    backdrop-filter:blur(4px);
-  }
+  /* MODAL GERAL */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:10000;padding:20px;backdrop-filter:blur(4px)}
   .modal-overlay.show{display:flex}
-  .modal{
-    background:white;border-radius:16px;
-    padding:28px;max-width:420px;width:100%;
-  }
-  .modal h3{
-    font-size:1.2rem;font-weight:800;
-    color:var(--azul-escuro);margin-bottom:10px;
-  }
+  .modal{background:white;border-radius:16px;padding:28px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto}
+  .modal h3{font-size:1.2rem;font-weight:800;color:var(--azul-escuro);margin-bottom:10px}
   .modal p{color:var(--cinza-500);font-size:.9rem;margin-bottom:22px}
-  .modal-actions{display:flex;gap:10px;justify-content:flex-end}
-  .modal-btn{
-    padding:11px 20px;border-radius:10px;border:none;
-    font-weight:700;font-size:.9rem;cursor:pointer;
-    font-family:inherit;transition:all .2s;
-  }
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+  .modal-btn{padding:11px 20px;border-radius:10px;border:none;font-weight:700;font-size:.9rem;cursor:pointer;font-family:inherit;transition:all .2s}
   .modal-btn.cancel{background:var(--cinza-100);color:var(--cinza-800)}
   .modal-btn.danger{background:var(--vermelho);color:white}
   .modal-btn:hover{transform:translateY(-1px)}
+
+  /* MODAL CONVITE */
+  .invite-modal .modal-header{
+    display:flex;align-items:center;gap:14px;margin-bottom:20px;
+    padding-bottom:16px;border-bottom:1px solid var(--cinza-200);
+  }
+  .invite-modal .avatar{
+    width:52px;height:52px;border-radius:50%;
+    background:linear-gradient(135deg,var(--laranja),var(--laranja-escuro));
+    color:white;font-weight:900;font-size:1.3rem;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .invite-modal .info h3{margin-bottom:2px;font-size:1.1rem}
+  .invite-modal .info p{margin:0;font-size:.8rem}
+  .invite-options{display:flex;flex-direction:column;gap:10px}
+  .invite-btn{
+    display:flex;align-items:center;gap:14px;
+    padding:16px 18px;border-radius:12px;
+    border:2px solid var(--cinza-200);background:white;
+    cursor:pointer;font-family:inherit;text-align:left;
+    transition:all .2s;width:100%;
+  }
+  .invite-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08);border-color:var(--laranja)}
+  .invite-btn .em{font-size:1.6rem;flex-shrink:0}
+  .invite-btn .txt{flex:1;min-width:0}
+  .invite-btn .txt strong{display:block;font-size:.95rem;color:var(--azul-escuro);font-weight:800;margin-bottom:2px}
+  .invite-btn .txt small{display:block;font-size:.78rem;color:var(--cinza-500);line-height:1.4}
+  .invite-btn.wpp{border-color:#BBF7D0;background:#F0FDF4}
+  .invite-btn.wpp:hover{border-color:#16A34A}
+  .invite-btn.mail{border-color:#BFDBFE;background:#EFF6FF}
+  .invite-btn.mail:hover{border-color:#2563EB}
+  .invite-btn.copy{border-color:#FDE68A;background:#FFFBEB}
+  .invite-btn.copy:hover{border-color:#D97706}
+
+  /* PRÉVIA MENSAGEM */
+  .preview-box{
+    background:var(--cinza-100);border:1px solid var(--cinza-200);
+    border-radius:10px;padding:14px;margin-top:14px;
+    font-size:.78rem;color:var(--cinza-800);line-height:1.5;
+    max-height:200px;overflow-y:auto;white-space:pre-wrap;
+    font-family:monospace;
+  }
+
+  /* CHECKBOX MASS */
+  .card-check{display:none}
 
   @media (max-width:600px){
     .header{padding:14px 16px}
@@ -371,10 +171,7 @@
     .header-btn{padding:8px 12px;font-size:.8rem}
     .container{padding:20px 16px 60px}
     .card{grid-template-columns:1fr}
-    .card-actions{
-      flex-direction:row;justify-content:flex-start;
-      align-items:center;flex-wrap:wrap;
-    }
+    .card-actions{flex-direction:row;justify-content:flex-start;align-items:center;flex-wrap:wrap}
     .card-hora{text-align:left;order:2}
     .toast-container{top:auto;bottom:20px;right:10px;left:10px}
     .toast{min-width:0;max-width:100%}
@@ -411,15 +208,10 @@
         <span class="dot"></span>
         <span id="notifText">Notificações off</span>
       </div>
-      <button class="header-btn" id="btnNotif" title="Ativar notificações">
-        🔔 Ativar
-      </button>
-      <button class="header-btn" id="btnExport">
-        📥 CSV
-      </button>
-      <button class="header-btn" id="btnLogout">
-        🚪 Sair
-      </button>
+      <button class="header-btn" id="btnNotif">🔔 Ativar</button>
+      <button class="header-btn bulk" id="btnConvidarTodos">📤 Convidar todos</button>
+      <button class="header-btn" id="btnExport">📥 CSV</button>
+      <button class="header-btn" id="btnLogout">🚪 Sair</button>
     </div>
   </div>
 
@@ -481,7 +273,7 @@
 
 <div class="toast-container" id="toastContainer"></div>
 
-<!-- MODAL -->
+<!-- MODAL: CONFIRMAR EXCLUSÃO -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <h3 id="modalTitle">Confirmar</h3>
@@ -493,17 +285,101 @@
   </div>
 </div>
 
+<!-- MODAL: CONVITE INDIVIDUAL -->
+<div class="modal-overlay" id="inviteModalOverlay">
+  <div class="modal invite-modal">
+    <div class="modal-header">
+      <div class="avatar" id="inviteAvatar">?</div>
+      <div class="info">
+        <h3 id="inviteNome">Nome</h3>
+        <p id="inviteContato">email · whatsapp</p>
+      </div>
+    </div>
+
+    <p>Escolha como enviar o convite:</p>
+
+    <div class="invite-options">
+      <button class="invite-btn wpp" id="inviteWhats">
+        <span class="em">💬</span>
+        <span class="txt">
+          <strong>Enviar por WhatsApp</strong>
+          <small>Abre o WhatsApp com a mensagem já pronta</small>
+        </span>
+      </button>
+
+      <button class="invite-btn mail" id="inviteMail">
+        <span class="em">✉️</span>
+        <span class="txt">
+          <strong>Enviar por E-mail</strong>
+          <small>Abre o e-mail com assunto e texto prontos</small>
+        </span>
+      </button>
+
+      <button class="invite-btn copy" id="inviteCopy">
+        <span class="em">📋</span>
+        <span class="txt">
+          <strong>Copiar mensagem</strong>
+          <small>Copia o texto para colar onde quiser</small>
+        </span>
+      </button>
+    </div>
+
+    <div class="preview-box" id="invitePreview"></div>
+
+    <div class="modal-actions">
+      <button class="modal-btn cancel" id="inviteCancel">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: CONVIDAR TODOS -->
+<div class="modal-overlay" id="bulkModalOverlay">
+  <div class="modal invite-modal">
+    <h3>📤 Convidar todos os cadastros</h3>
+    <p>Escolha como enviar para <strong id="bulkCount">0</strong> pessoas:</p>
+
+    <div class="invite-options">
+      <button class="invite-btn copy" id="bulkCopy">
+        <span class="em">📋</span>
+        <span class="txt">
+          <strong>Copiar todos os textos</strong>
+          <small>Copia uma lista com todos os convites personalizados</small>
+        </span>
+      </button>
+
+      <button class="invite-btn wpp" id="bulkWhats">
+        <span class="em">💬</span>
+        <span class="txt">
+          <strong>Abrir WhatsApp (um por um)</strong>
+          <small>Abre o WhatsApp do primeiro. Você envia e volta para o próximo.</small>
+        </span>
+      </button>
+
+      <button class="invite-btn mail" id="bulkMail">
+        <span class="em">✉️</span>
+        <span class="txt">
+          <strong>Copiar todos os e-mails</strong>
+          <small>Copia a lista de e-mails para colar no Cco do seu Gmail</small>
+        </span>
+      </button>
+    </div>
+
+    <div class="modal-actions">
+      <button class="modal-btn cancel" id="bulkCancel">Fechar</button>
+    </div>
+  </div>
+</div>
+
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import {
-    getFirestore, collection, query, orderBy, onSnapshot,
-    doc, deleteDoc, Timestamp
+    getFirestore, collection, query, orderBy, onSnapshot, doc, deleteDoc
   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
   import {
     getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-  // ====== CONFIGURAÇÃO ======
+  // ====== CONFIGURAÇÃO DO FIREBASE ======
   const firebaseConfig = {
     apiKey: "AIzaSyAC4dMxTeLh7AaEWXqkHdmB1FFhZXyKyY0",
     authDomain: "lpxlandpage.firebaseapp.com",
@@ -514,6 +390,23 @@
     measurementId: "G-QPDLVZX8ND"
   };
 
+  // ============================================================
+  // ⚠️ CONFIGURAÇÕES DO CONVITE — EDITE AQUI
+  // ============================================================
+  const CONFIG = {
+    // Link de teste da Play Store (troque pelo seu)
+    linkTeste: "https://play.google.com/apps/testing/io.github.lpx_tecnologia.twa",
+    // Seu nome (aparece na assinatura)
+    seuNome: "Luiz Felipe",
+    // Seu WhatsApp com DDD (aparece na mensagem de e-mail)
+    seuWhatsapp: "(47) 99999-9999",
+    // Nome do app
+    nomeApp: "LPXConstrutor",
+    // Site
+    site: "lpxconstrutor.com.br"
+  };
+  // ============================================================
+
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const auth = getAuth(app);
@@ -523,6 +416,9 @@
   let idsConhecidos = new Set();
   let primeiroCarregamento = true;
   let unsubscribeSnapshot = null;
+  let cadastroAtualConvite = null;
+  let filaBulk = [];
+  let indiceBulk = 0;
 
   // ====== ELEMENTOS ======
   const loginScreen = document.getElementById('loginScreen');
@@ -535,6 +431,7 @@
   const btnLogout = document.getElementById('btnLogout');
   const btnNotif = document.getElementById('btnNotif');
   const btnExport = document.getElementById('btnExport');
+  const btnConvidarTodos = document.getElementById('btnConvidarTodos');
   const notifStatus = document.getElementById('notifStatus');
   const notifText = document.getElementById('notifText');
   const listaEl = document.getElementById('lista');
@@ -542,6 +439,21 @@
   const filterPerfil = document.getElementById('filterPerfil');
   const filterArea = document.getElementById('filterArea');
   const toastContainer = document.getElementById('toastContainer');
+
+  // Modais
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalCancel = document.getElementById('modalCancel');
+  const modalConfirm = document.getElementById('modalConfirm');
+  const inviteModalOverlay = document.getElementById('inviteModalOverlay');
+  const inviteCancel = document.getElementById('inviteCancel');
+  const inviteWhats = document.getElementById('inviteWhats');
+  const inviteMail = document.getElementById('inviteMail');
+  const inviteCopy = document.getElementById('inviteCopy');
+  const bulkModalOverlay = document.getElementById('bulkModalOverlay');
+  const bulkCancel = document.getElementById('bulkCancel');
+  const bulkCopy = document.getElementById('bulkCopy');
+  const bulkWhats = document.getElementById('bulkWhats');
+  const bulkMail = document.getElementById('bulkMail');
 
   // ====== LOGIN ======
   loginForm.addEventListener('submit', async (e) => {
@@ -554,7 +466,7 @@
     } catch (err) {
       console.error(err);
       let txt = 'Erro ao entrar.';
-      if (err.code === 'auth/invalid-credential' || err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
+      if (['auth/invalid-credential','auth/wrong-password','auth/user-not-found'].includes(err.code)) {
         txt = 'E-mail ou senha incorretos.';
       } else if (err.code === 'auth/invalid-email') {
         txt = 'E-mail inválido.';
@@ -574,7 +486,6 @@
     await signOut(auth);
   });
 
-  // ====== MONITORAR AUTENTICAÇÃO ======
   onAuthStateChanged(auth, (user) => {
     if (user) {
       loginScreen.style.display = 'none';
@@ -590,13 +501,12 @@
     }
   });
 
-  // ====== LISTENER EM TEMPO REAL ======
+  // ====== LISTENER ======
   function iniciarListener() {
     if (unsubscribeSnapshot) unsubscribeSnapshot();
     const q = query(collection(db, 'cadastros'), orderBy('criadoEm', 'desc'));
 
     unsubscribeSnapshot = onSnapshot(q, (snapshot) => {
-      // Detectar novos documentos
       snapshot.docChanges().forEach((change) => {
         if (change.type === 'added') {
           const id = change.doc.id;
@@ -612,7 +522,6 @@
       });
       primeiroCarregamento = false;
 
-      // Atualizar lista completa
       todosCadastros = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
       atualizarStats();
       renderizarLista();
@@ -622,11 +531,10 @@
     });
   }
 
-  // ====== ESTATÍSTICAS ======
+  // ====== STATS ======
   function atualizarStats() {
     const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
     const seteDiasAtras = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-
     let countHoje = 0, countSemana = 0, countEmpresas = 0;
 
     todosCadastros.forEach((c) => {
@@ -644,7 +552,7 @@
     document.getElementById('statEmpresas').textContent = countEmpresas;
   }
 
-  // ====== RENDERIZAR LISTA ======
+  // ====== LISTA ======
   function renderizarLista() {
     const busca = searchInput.value.trim().toLowerCase();
     const perfil = filterPerfil.value;
@@ -676,12 +584,10 @@
       const wppLink = `https://wa.me/55${(c.whatsapp || '').replace(/\D/g, '')}`;
       const emailLink = `mailto:${c.email}`;
       const nomeSafe = escapar(c.nome || '');
+      const inicial = (c.nome || '?').trim().charAt(0).toUpperCase();
       const emojiPerfil = {
-        profissional: '👷',
-        empresa: '🏢',
-        engenheiro: '📐',
-        contratante: '🏠',
-        outro: '👤'
+        profissional: '👷', empresa: '🏢', engenheiro: '📐',
+        contratante: '🏠', outro: '👤'
       }[c.perfil] || '👤';
 
       return `
@@ -697,13 +603,14 @@
           </div>
           <div class="card-actions">
             <div class="card-hora">${dataStr}<br>${horaStr}</div>
+            <button class="card-btn convite" data-convidar="${c.id}">📤 Convidar</button>
             <a href="${wppLink}" target="_blank" class="card-btn wpp">💬 WhatsApp</a>
             <a href="${emailLink}" class="card-btn mail">✉️ E-mail</a>
           </div>
         </div>`;
     }).join('');
 
-    // Marca como "novo" os que chegaram nos últimos 10 segundos
+    // Marca como novo os últimos 10s
     const agora = Date.now();
     filtrados.forEach((c) => {
       const data = c.criadoEm?.toDate ? c.criadoEm.toDate() : null;
@@ -711,6 +618,15 @@
         const el = document.querySelector(`.card[data-id="${c.id}"]`);
         if (el) el.classList.add('novo');
       }
+    });
+
+    // Attach dos botões "Convidar"
+    listaEl.querySelectorAll('[data-convidar]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.convidar;
+        const c = todosCadastros.find((x) => x.id === id);
+        if (c) abrirConvite(c);
+      });
     });
   }
 
@@ -724,6 +640,232 @@
   searchInput.addEventListener('input', renderizarLista);
   filterPerfil.addEventListener('change', renderizarLista);
   filterArea.addEventListener('change', renderizarLista);
+
+  // ============================================================
+  // GERADORES DE MENSAGEM
+  // ============================================================
+  function gerarMensagemWhatsApp(nome) {
+    return `🎉 *Você foi convidado para testar o ${CONFIG.nomeApp}!*
+
+Oi ${nome}, tudo bem?
+
+Estou lançando um app de conexão entre profissionais da construção civil e preciso de 12 testadores antes de publicar na Play Store.
+
+*Você foi escolhido.* É rapidinho:
+
+1️⃣ Clica nesse link:
+${CONFIG.linkTeste}
+
+2️⃣ Aceita o convite e instala (3 min)
+
+3️⃣ Abre o app 1 vez por dia durante 14 dias
+
+*O que você ganha:*
+✅ Acesso vitalício gratuito
+✅ Nome nos créditos como testador fundador
+✅ Influência nas próximas funcionalidades
+
+Qualquer dúvida me chama aqui mesmo. Valeu demais! 🙏
+
+— ${CONFIG.seuNome}
+🏗️ ${CONFIG.nomeApp}`;
+  }
+
+  function gerarMensagemEmail(nome) {
+    return `Olá, ${nome}!
+
+Você foi convidado para ser TESTADOR OFICIAL do ${CONFIG.nomeApp} — a rede profissional da construção civil.
+
+O ${CONFIG.nomeApp} é um app que conecta pedreiros, eletricistas, engenheiros, empresas e clientes em todo o Brasil.
+
+Antes de publicar na Play Store, preciso de 12 testadores. Você foi um dos escolhidos, e leva menos de 3 minutos.
+
+COMO PARTICIPAR:
+
+1) Clique no link:
+${CONFIG.linkTeste}
+
+2) Aceite o convite e instale o app
+
+3) Abra o app 1 vez por dia durante 14 dias
+   (não precisa fazer nada dentro do app)
+
+O QUE VOCÊ GANHA:
+
+- Acesso vitalício gratuito quando o app for lançado
+- Nome nos créditos como testador fundador
+- Influência direta nas próximas funcionalidades
+
+Qualquer dúvida, me chama no WhatsApp: ${CONFIG.seuWhatsapp}
+
+Muito obrigado!
+${CONFIG.seuNome}
+Fundador do ${CONFIG.nomeApp}
+
+---
+${CONFIG.nomeApp}
+${CONFIG.site}`;
+  }
+
+  const ASSUNTO_EMAIL = `🎉 Você foi escolhido para testar o ${CONFIG.nomeApp}`;
+
+  // ====== MODAL CONVITE INDIVIDUAL ======
+  function abrirConvite(c) {
+    cadastroAtualConvite = c;
+    document.getElementById('inviteAvatar').textContent = (c.nome || '?').charAt(0).toUpperCase();
+    document.getElementById('inviteNome').textContent = c.nome || 'Sem nome';
+    document.getElementById('inviteContato').textContent = `${c.email || 'sem e-mail'} · ${c.whatsapp || 'sem whatsapp'}`;
+    document.getElementById('invitePreview').textContent = gerarMensagemWhatsApp(c.nome || 'amigo(a)');
+    inviteModalOverlay.classList.add('show');
+  }
+
+  inviteCancel.addEventListener('click', () => {
+    inviteModalOverlay.classList.remove('show');
+    cadastroAtualConvite = null;
+  });
+
+  inviteWhats.addEventListener('click', () => {
+    if (!cadastroAtualConvite) return;
+    const fone = (cadastroAtualConvite.whatsapp || '').replace(/\D/g, '');
+    if (!fone) {
+      alert('Este cadastro não tem WhatsApp informado.');
+      return;
+    }
+    const msg = gerarMensagemWhatsApp(cadastroAtualConvite.nome || 'amigo(a)');
+    const url = `https://wa.me/55${fone}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+    inviteModalOverlay.classList.remove('show');
+  });
+
+  inviteMail.addEventListener('click', () => {
+    if (!cadastroAtualConvite) return;
+    if (!cadastroAtualConvite.email) {
+      alert('Este cadastro não tem e-mail informado.');
+      return;
+    }
+    const nome = cadastroAtualConvite.nome || 'amigo(a)';
+    const corpo = gerarMensagemEmail(nome);
+    const url = `mailto:${cadastroAtualConvite.email}?subject=${encodeURIComponent(ASSUNTO_EMAIL)}&body=${encodeURIComponent(corpo)}`;
+    window.location.href = url;
+    inviteModalOverlay.classList.remove('show');
+  });
+
+  inviteCopy.addEventListener('click', async () => {
+    if (!cadastroAtualConvite) return;
+    const nome = cadastroAtualConvite.nome || 'amigo(a)';
+    const msg = gerarMensagemWhatsApp(nome);
+    try {
+      await navigator.clipboard.writeText(msg);
+      inviteCopy.querySelector('.txt strong').textContent = '✅ Copiado!';
+      setTimeout(() => {
+        inviteCopy.querySelector('.txt strong').textContent = 'Copiar mensagem';
+      }, 2000);
+    } catch (e) {
+      alert('Não foi possível copiar. Selecione o texto na prévia manualmente.');
+    }
+  });
+
+  // ====== MODAL CONVIDAR TODOS ======
+  btnConvidarTodos.addEventListener('click', () => {
+    if (todosCadastros.length === 0) {
+      alert('Não há cadastros para convidar.');
+      return;
+    }
+    document.getElementById('bulkCount').textContent = todosCadastros.length;
+    bulkModalOverlay.classList.add('show');
+  });
+
+  bulkCancel.addEventListener('click', () => {
+    bulkModalOverlay.classList.remove('show');
+  });
+
+  bulkCopy.addEventListener('click', async () => {
+    const blocos = todosCadastros.map((c, i) => {
+      return `========== ${i + 1}. ${c.nome || 'Sem nome'} (${c.whatsapp || c.email}) ==========\n\n${gerarMensagemWhatsApp(c.nome || 'amigo(a)')}`;
+    });
+    const texto = blocos.join('\n\n\n');
+    try {
+      await navigator.clipboard.writeText(texto);
+      bulkCopy.querySelector('.txt strong').textContent = '✅ Copiado!';
+      setTimeout(() => {
+        bulkCopy.querySelector('.txt strong').textContent = 'Copiar todos os textos';
+      }, 2000);
+    } catch (e) {
+      alert('Erro ao copiar. Tente novamente.');
+    }
+  });
+
+  bulkMail.addEventListener('click', async () => {
+    const emails = todosCadastros.map((c) => c.email).filter(Boolean).join(', ');
+    try {
+      await navigator.clipboard.writeText(emails);
+      bulkMail.querySelector('.txt strong').textContent = '✅ E-mails copiados!';
+      setTimeout(() => {
+        bulkMail.querySelector('.txt strong').textContent = 'Copiar todos os e-mails';
+      }, 2000);
+    } catch (e) {
+      alert('Erro ao copiar. Tente novamente.');
+    }
+  });
+
+  bulkWhats.addEventListener('click', () => {
+    // Fila: abre um WhatsApp por vez. Usuário envia e volta para clicar no próximo.
+    filaBulk = todosCadastros.filter((c) => c.whatsapp);
+    if (filaBulk.length === 0) {
+      alert('Nenhum cadastro tem WhatsApp informado.');
+      return;
+    }
+    indiceBulk = 0;
+    bulkModalOverlay.classList.remove('show');
+    abrirProximoBulk();
+  });
+
+  function abrirProximoBulk() {
+    if (indiceBulk >= filaBulk.length) {
+      mostrarToastInfo('🎉 Fila concluída!', 'Você passou por todos os contatos.');
+      return;
+    }
+    const c = filaBulk[indiceBulk];
+    const fone = (c.whatsapp || '').replace(/\D/g, '');
+    const msg = gerarMensagemWhatsApp(c.nome || 'amigo(a)');
+    const url = `https://wa.me/55${fone}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+
+    // Mostra toast com botão "próximo"
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.style.cssText = 'border-left-color:#F59E0B;max-width:420px';
+    toast.innerHTML = `
+      <div class="toast-title"><span class="em">💬</span> Enviando ${indiceBulk + 1} de ${filaBulk.length}</div>
+      <div class="toast-body">
+        <strong>${escapar(c.nome || '')}</strong><br>
+        Depois de enviar, clique em <strong>"Próximo"</strong>.
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <button class="card-btn convite" id="btnProximoBulk" style="flex:1;">➡️ Próximo</button>
+        <button class="card-btn" id="btnPararBulk">Parar</button>
+      </div>`;
+    toastContainer.appendChild(toast);
+
+    document.getElementById('btnProximoBulk').addEventListener('click', () => {
+      toast.remove();
+      indiceBulk++;
+      setTimeout(abrirProximoBulk, 300);
+    });
+    document.getElementById('btnPararBulk').addEventListener('click', () => {
+      toast.remove();
+      filaBulk = [];
+      indiceBulk = 0;
+    });
+  }
+
+  function mostrarToastInfo(titulo, texto) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = `<div class="toast-title">${titulo}</div><div class="toast-body">${texto}</div>`;
+    toastContainer.appendChild(toast);
+    setTimeout(() => toast.remove(), 6000);
+  }
 
   // ====== NOTIFICAÇÕES ======
   function atualizarStatusNotif() {
@@ -770,44 +912,29 @@
         tag: 'novo-cadastro-' + Date.now(),
         requireInteraction: true
       });
-      n.onclick = () => {
-        window.focus();
-        n.close();
-      };
-    } catch (e) {
-      console.error('Erro ao notificar:', e);
-    }
+      n.onclick = () => { window.focus(); n.close(); };
+    } catch (e) { console.error(e); }
     tocarSom();
   }
 
   function tocarSom() {
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain); gain.connect(ctx.destination);
-      osc.frequency.value = 880;
-      osc.type = 'sine';
-      gain.gain.setValueAtTime(0.3, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.4);
-      // Segundo bipe
-      setTimeout(() => {
-        const osc2 = ctx.createOscillator();
-        const gain2 = ctx.createGain();
-        osc2.connect(gain2); gain2.connect(ctx.destination);
-        osc2.frequency.value = 1100;
-        osc2.type = 'sine';
-        gain2.gain.setValueAtTime(0.3, ctx.currentTime);
-        gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
-        osc2.start();
-        osc2.stop(ctx.currentTime + 0.4);
-      }, 200);
+      const beep = (freq, at) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.frequency.value = freq; osc.type = 'sine';
+        gain.gain.setValueAtTime(0.3, ctx.currentTime + at);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + at + 0.4);
+        osc.start(ctx.currentTime + at);
+        osc.stop(ctx.currentTime + at + 0.4);
+      };
+      beep(880, 0);
+      beep(1100, 0.2);
     } catch (e) { /* ignora */ }
   }
 
-  // ====== TOAST ======
   function mostrarToastNovo(dados) {
     const toast = document.createElement('div');
     toast.className = 'toast';
@@ -836,13 +963,8 @@
     const linhas = todosCadastros.map((c) => {
       const data = c.criadoEm?.toDate ? c.criadoEm.toDate().toLocaleString('pt-BR') : '';
       return [
-        data,
-        c.nome || '',
-        c.email || '',
-        c.whatsapp || '',
-        c.cidade || '',
-        c.perfil || '',
-        c.area || ''
+        data, c.nome || '', c.email || '', c.whatsapp || '',
+        c.cidade || '', c.perfil || '', c.area || ''
       ].map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',');
     });
     const csv = '\uFEFF' + [cabecalho.join(','), ...linhas].join('\n');
