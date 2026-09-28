@@ -22,7 +22,6 @@
   body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--cinza-100);color:var(--cinza-800);line-height:1.6;min-height:100vh}
   a{color:inherit;text-decoration:none}
 
-  /* LOGIN */
   .login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;
     background:radial-gradient(ellipse at top right,rgba(91,163,224,.25),transparent 50%),radial-gradient(ellipse at bottom left,rgba(245,158,11,.15),transparent 50%),linear-gradient(135deg,#0F2640 0%,var(--azul-escuro) 50%,#1E4A73 100%)}
   .login-box{background:white;border-radius:20px;padding:44px 36px;max-width:420px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,.4)}
@@ -38,7 +37,6 @@
   .login-msg.err{display:block;background:#FEF2F2;color:#991B1B;border:1px solid #FECACA}
   .login-msg.ok{display:block;background:#F0FDF4;color:#166534;border:1px solid #BBF7D0}
 
-  /* HEADER */
   .header{background:linear-gradient(135deg,var(--azul-escuro),var(--azul-medio));color:white;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.15)}
   .header-brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.05rem}
   .header-brand .icon{width:36px;height:36px;border-radius:50%;background:url('logo capacetebranco.png') center/cover no-repeat;border:2px solid var(--laranja);flex-shrink:0}
@@ -54,7 +52,6 @@
 
   .container{max-width:1200px;margin:0 auto;padding:32px 24px 80px}
 
-  /* STATS */
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
   .stat-card{background:white;border-radius:var(--radius);padding:22px;box-shadow:0 2px 12px rgba(26,58,92,.06);border-left:4px solid var(--laranja);transition:all .3s}
   .stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,58,92,.12)}
@@ -64,13 +61,11 @@
   .stat-card.semana{border-left-color:var(--azul-claro)}
   .stat-card.tipo{border-left-color:#8B5CF6}
 
-  /* FILTROS */
   .filters{background:white;border-radius:var(--radius);padding:18px 20px;margin-bottom:20px;box-shadow:0 2px 12px rgba(26,58,92,.06);display:flex;gap:12px;flex-wrap:wrap;align-items:center}
   .search-input{flex:1;min-width:220px;padding:12px 16px;border-radius:10px;border:1px solid var(--cinza-200);background:var(--cinza-100);font-size:.9rem;font-family:inherit;outline:none;transition:all .2s}
   .search-input:focus{border-color:var(--laranja);background:white;box-shadow:0 0 0 4px rgba(245,158,11,.15)}
   .filter-select{padding:12px 16px;border-radius:10px;border:1px solid var(--cinza-200);background:var(--cinza-100);font-size:.9rem;font-family:inherit;outline:none;cursor:pointer}
 
-  /* LISTA */
   .lista{display:flex;flex-direction:column;gap:12px}
   .vazio{background:white;border-radius:var(--radius);padding:60px 24px;text-align:center;color:var(--cinza-500)}
   .vazio .em{font-size:3rem;margin-bottom:12px;display:block}
@@ -99,7 +94,6 @@
   .card-btn.convite{background:linear-gradient(135deg,var(--laranja),var(--laranja-escuro));border-color:var(--laranja-escuro);color:white;font-weight:800}
   .card-btn.convite:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(245,158,11,.4)}
 
-  /* TOAST */
   .toast-container{position:fixed;top:80px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;pointer-events:none}
   .toast{background:white;border-left:4px solid var(--verde);border-radius:12px;padding:16px 20px;box-shadow:0 8px 30px rgba(0,0,0,.15);min-width:280px;max-width:380px;animation:slideRight .4s ease;pointer-events:auto}
   @keyframes slideRight{from{opacity:0;transform:translateX(100%)}to{opacity:1;transform:translateX(0)}}
@@ -108,7 +102,6 @@
   .toast-body{font-size:.85rem;color:var(--cinza-500)}
   .toast-body strong{color:var(--cinza-800)}
 
-  /* MODAL GERAL */
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:10000;padding:20px;backdrop-filter:blur(4px)}
   .modal-overlay.show{display:flex}
   .modal{background:white;border-radius:16px;padding:28px;max-width:520px;width:100%;max-height:90vh;overflow-y:auto}
@@ -120,7 +113,6 @@
   .modal-btn.danger{background:var(--vermelho);color:white}
   .modal-btn:hover{transform:translateY(-1px)}
 
-  /* MODAL CONVITE */
   .invite-modal .modal-header{
     display:flex;align-items:center;gap:14px;margin-bottom:20px;
     padding-bottom:16px;border-bottom:1px solid var(--cinza-200);
@@ -153,7 +145,6 @@
   .invite-btn.copy{border-color:#FDE68A;background:#FFFBEB}
   .invite-btn.copy:hover{border-color:#D97706}
 
-  /* PRÉVIA MENSAGEM */
   .preview-box{
     background:var(--cinza-100);border:1px solid var(--cinza-200);
     border-radius:10px;padding:14px;margin-top:14px;
@@ -161,9 +152,6 @@
     max-height:200px;overflow-y:auto;white-space:pre-wrap;
     font-family:monospace;
   }
-
-  /* CHECKBOX MASS */
-  .card-check{display:none}
 
   @media (max-width:600px){
     .header{padding:14px 16px}
@@ -180,7 +168,6 @@
 </head>
 <body>
 
-<!-- LOGIN -->
 <div class="login-screen" id="loginScreen">
   <div class="login-box">
     <div class="login-logo"></div>
@@ -195,9 +182,7 @@
   </div>
 </div>
 
-<!-- APP -->
 <div id="appScreen" style="display:none">
-
   <div class="header">
     <div class="header-brand">
       <div class="icon"></div>
@@ -216,7 +201,6 @@
   </div>
 
   <div class="container">
-
     <div class="stats">
       <div class="stat-card">
         <div class="stat-label">Total</div>
@@ -267,25 +251,11 @@
         <div>Carregando cadastros...</div>
       </div>
     </div>
-
   </div>
 </div>
 
 <div class="toast-container" id="toastContainer"></div>
 
-<!-- MODAL: CONFIRMAR EXCLUSÃO -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <h3 id="modalTitle">Confirmar</h3>
-    <p id="modalText">Tem certeza?</p>
-    <div class="modal-actions">
-      <button class="modal-btn cancel" id="modalCancel">Cancelar</button>
-      <button class="modal-btn danger" id="modalConfirm">Excluir</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL: CONVITE INDIVIDUAL -->
 <div class="modal-overlay" id="inviteModalOverlay">
   <div class="modal invite-modal">
     <div class="modal-header">
@@ -332,7 +302,6 @@
   </div>
 </div>
 
-<!-- MODAL: CONVIDAR TODOS -->
 <div class="modal-overlay" id="bulkModalOverlay">
   <div class="modal invite-modal">
     <h3>📤 Convidar todos os cadastros</h3>
@@ -351,7 +320,7 @@
         <span class="em">💬</span>
         <span class="txt">
           <strong>Abrir WhatsApp (um por um)</strong>
-          <small>Abre o WhatsApp do primeiro. Você envia e volta para o próximo.</small>
+          <small>Abre o WhatsApp do primeiro. Você envia e clica em Próximo.</small>
         </span>
       </button>
 
@@ -373,7 +342,7 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import {
-    getFirestore, collection, query, orderBy, onSnapshot, doc, deleteDoc
+    getFirestore, collection, query, orderBy, onSnapshot
   } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
   import {
     getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
@@ -391,11 +360,13 @@
   };
 
   // ============================================================
-  // ⚠️ CONFIGURAÇÕES DO CONVITE — EDITE AQUI
+  // ⚠️ CONFIGURAÇÕES DO CONVITE — JÁ ATUALIZADAS
   // ============================================================
   const CONFIG = {
-    // Link de teste da Play Store (troque pelo seu)
-    linkTeste: "https://play.google.com/apps/testing/io.github.lpx_tecnologia.twa",
+    // Link de teste na Play Store (usado nos convites)
+    linkTeste: "https://play.google.com/apps/testing/com.lpxtecnologia.lpxconstrutor",
+    // Link da página do app na loja (usado como "saiba mais")
+    linkLoja: "https://play.google.com/store/apps/details?id=com.lpxtecnologia.lpxconstrutor",
     // Seu nome (aparece na assinatura)
     seuNome: "Luiz Felipe",
     // Seu WhatsApp com DDD (aparece na mensagem de e-mail)
@@ -411,7 +382,6 @@
   const db = getFirestore(app);
   const auth = getAuth(app);
 
-  // ====== ESTADO ======
   let todosCadastros = [];
   let idsConhecidos = new Set();
   let primeiroCarregamento = true;
@@ -420,7 +390,6 @@
   let filaBulk = [];
   let indiceBulk = 0;
 
-  // ====== ELEMENTOS ======
   const loginScreen = document.getElementById('loginScreen');
   const appScreen = document.getElementById('appScreen');
   const loginForm = document.getElementById('loginForm');
@@ -440,10 +409,6 @@
   const filterArea = document.getElementById('filterArea');
   const toastContainer = document.getElementById('toastContainer');
 
-  // Modais
-  const modalOverlay = document.getElementById('modalOverlay');
-  const modalCancel = document.getElementById('modalCancel');
-  const modalConfirm = document.getElementById('modalConfirm');
   const inviteModalOverlay = document.getElementById('inviteModalOverlay');
   const inviteCancel = document.getElementById('inviteCancel');
   const inviteWhats = document.getElementById('inviteWhats');
@@ -455,7 +420,6 @@
   const bulkWhats = document.getElementById('bulkWhats');
   const bulkMail = document.getElementById('bulkMail');
 
-  // ====== LOGIN ======
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     btnLogin.disabled = true;
@@ -501,7 +465,6 @@
     }
   });
 
-  // ====== LISTENER ======
   function iniciarListener() {
     if (unsubscribeSnapshot) unsubscribeSnapshot();
     const q = query(collection(db, 'cadastros'), orderBy('criadoEm', 'desc'));
@@ -531,7 +494,6 @@
     });
   }
 
-  // ====== STATS ======
   function atualizarStats() {
     const hoje = new Date(); hoje.setHours(0, 0, 0, 0);
     const seteDiasAtras = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
@@ -552,7 +514,6 @@
     document.getElementById('statEmpresas').textContent = countEmpresas;
   }
 
-  // ====== LISTA ======
   function renderizarLista() {
     const busca = searchInput.value.trim().toLowerCase();
     const perfil = filterPerfil.value;
@@ -584,7 +545,6 @@
       const wppLink = `https://wa.me/55${(c.whatsapp || '').replace(/\D/g, '')}`;
       const emailLink = `mailto:${c.email}`;
       const nomeSafe = escapar(c.nome || '');
-      const inicial = (c.nome || '?').trim().charAt(0).toUpperCase();
       const emojiPerfil = {
         profissional: '👷', empresa: '🏢', engenheiro: '📐',
         contratante: '🏠', outro: '👤'
@@ -610,7 +570,6 @@
         </div>`;
     }).join('');
 
-    // Marca como novo os últimos 10s
     const agora = Date.now();
     filtrados.forEach((c) => {
       const data = c.criadoEm?.toDate ? c.criadoEm.toDate() : null;
@@ -620,7 +579,6 @@
       }
     });
 
-    // Attach dos botões "Convidar"
     listaEl.querySelectorAll('[data-convidar]').forEach((btn) => {
       btn.addEventListener('click', () => {
         const id = btn.dataset.convidar;
@@ -636,14 +594,11 @@
     })[m]);
   }
 
-  // ====== FILTROS ======
   searchInput.addEventListener('input', renderizarLista);
   filterPerfil.addEventListener('change', renderizarLista);
   filterArea.addEventListener('change', renderizarLista);
 
-  // ============================================================
-  // GERADORES DE MENSAGEM
-  // ============================================================
+  // ====== GERADORES DE MENSAGEM ======
   function gerarMensagemWhatsApp(nome) {
     return `🎉 *Você foi convidado para testar o ${CONFIG.nomeApp}!*
 
@@ -704,12 +659,13 @@ Fundador do ${CONFIG.nomeApp}
 
 ---
 ${CONFIG.nomeApp}
-${CONFIG.site}`;
+${CONFIG.site}
+${CONFIG.linkLoja}`;
   }
 
   const ASSUNTO_EMAIL = `🎉 Você foi escolhido para testar o ${CONFIG.nomeApp}`;
 
-  // ====== MODAL CONVITE INDIVIDUAL ======
+  // ====== MODAL CONVITE ======
   function abrirConvite(c) {
     cadastroAtualConvite = c;
     document.getElementById('inviteAvatar').textContent = (c.nome || '?').charAt(0).toUpperCase();
@@ -765,7 +721,7 @@ ${CONFIG.site}`;
     }
   });
 
-  // ====== MODAL CONVIDAR TODOS ======
+  // ====== CONVIDAR TODOS ======
   btnConvidarTodos.addEventListener('click', () => {
     if (todosCadastros.length === 0) {
       alert('Não há cadastros para convidar.');
@@ -809,7 +765,6 @@ ${CONFIG.site}`;
   });
 
   bulkWhats.addEventListener('click', () => {
-    // Fila: abre um WhatsApp por vez. Usuário envia e volta para clicar no próximo.
     filaBulk = todosCadastros.filter((c) => c.whatsapp);
     if (filaBulk.length === 0) {
       alert('Nenhum cadastro tem WhatsApp informado.');
@@ -831,7 +786,6 @@ ${CONFIG.site}`;
     const url = `https://wa.me/55${fone}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
 
-    // Mostra toast com botão "próximo"
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.style.cssText = 'border-left-color:#F59E0B;max-width:420px';
